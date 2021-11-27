@@ -1,18 +1,25 @@
 import React from 'react';
 import { useEffect,useState } from 'react';
+import Loading from './Loading';
 import '../App.css';
 
 const Cards = () => {
     const [users,setUsers]=useState([]);
+    const [loading,setLoading] = useState(true);
     const getUsers = async()=>{
+        
         const response = await fetch('https://reqres.in/api/users?page=1');
         const jresponse=await response.json();
         setUsers(jresponse.data);
+        setLoading(false)
         
     }
     useEffect(()=>{
         getUsers();
     },[]);
+    if(loading){
+        return<Loading/>
+    }
     return(
         users.map((curElem)=>{
                 return (

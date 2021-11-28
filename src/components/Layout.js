@@ -1,17 +1,25 @@
-import React,{setState} from 'react'
+import React,{useState} from 'react'
 import '../App.css';
 import Cards from './Cards'
 
 
 const Layout = () => {
-  
-  
+  const [visible,setVisible]=useState(false);
+  const showData=(e)=>{
+    setVisible(true);
+  }
+  if(visible){
+    return (
+      <div className="layout">
+        <Cards/>
+      </div>
+    )
+  }
   return (
     <div className="layout">
-       <Cards/> 
        
-    
-</div>
+      <button onClick={showData}>Get Users</button>
+      </div>
   )
 }
 
